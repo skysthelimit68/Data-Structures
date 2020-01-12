@@ -118,3 +118,5 @@ class DoublyLinkedList:
               if current_node.value > max_val:
                   max_val = current_node.value        
           return max_val
+
+   
