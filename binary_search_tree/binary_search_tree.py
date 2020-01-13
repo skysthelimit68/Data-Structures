@@ -12,28 +12,76 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        if value < self.value:
+            # if there is no left child
+            if not self.left:
+                self.left = BinarySearchTree(value)
+            # if there is left child, recursion
+            else:
+                self.left.insert(value)
+        else:
+            # if there is no right child
+            if not self.right:
+                self.right = BinarySearchTree(value)
+            # if there is right child, recursion
+            else:
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
 
+        if target < self.value and self.left:
+            #if left child exist
+            return self.left.contains(target)
+          
+        if target > self.value and self.right:
+            #if right child does exist
+            return self.right.contains(target)
+           
+
+        return False
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # max value is either self or from one of it's right children as left children are all smaller than self
+        # SO ...  we are trying to find the MOST OUTTER RIGHT child in the tree
+        
+        #first, check for right child since right child will always be greater than self
+        if self.right:
+            return self.right.get_max()
+        
+        #if no right child, then self value is the greatest
+        if self:
+            return self.value
+
+        return None
+
+
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+
+        if self.left:
+            self.left.for_each(cb)
+        if self.right:
+            self.right.for_each(cb)
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        
+        #start from left child first, then print, then right child, from low to high
+        if node.left:
+            self.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
