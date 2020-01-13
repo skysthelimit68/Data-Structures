@@ -32,20 +32,15 @@ class BinarySearchTree:
     def contains(self, target):
         if self.value == target:
             return True
+
         if target < self.value and self.left:
             #if left child exist
             return self.left.contains(target)
-            # if not self.left:
-            #     return False
-            # else:
-            #     return self.left.contains(target)
+          
         if target > self.value and self.right:
             #if right child does exist
             return self.right.contains(target)
-            # if not self.right:
-            #     return False
-            # else:
-            #     return self.right.contains(target)
+           
 
         return False
     # Return the maximum value found in the tree
@@ -53,15 +48,15 @@ class BinarySearchTree:
         # max value is either self or from one of it's right children as left children are all smaller than self
         # SO ...  we are trying to find the MOST OUTTER RIGHT child in the tree
         
-        # is this an empty tree?
-        if not self:
-            return None
-
-        # if there are no right child
-        if not self.right:
-            return self.value
+        #first, check for right child since right child will always be greater than self
+        if self.right:
+            return self.right.get_max()
         
-        self.right.get_max()
+        #if no right child, then self value is the greatest
+        if self:
+            return self.value
+
+        return None
 
 
 
