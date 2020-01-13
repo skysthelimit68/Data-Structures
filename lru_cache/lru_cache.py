@@ -12,7 +12,8 @@ class LRUCache:
         self.limit = limit
         self.size = 0
         #creating empty DLL
-        self.storage = DoublyLinkedList()       
+        self.storage = DoublyLinkedList()    
+        #create a dictionary for cache   
         self.cache = dict()
         
 
